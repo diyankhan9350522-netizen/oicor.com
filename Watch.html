@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>OICOR // LUXURY ESPORTS WATCH VAULT</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#05060a;--panel:#0b0e15;--panel2:#111522;--line:#252b3b;
+  --text:#f5f7ff;--muted:#929ab0;--gold:#ffd76a;--cyan:#48e7ff;
+  --pink:#ff4fd8;--green:#68ffb0;
+}
+body{
+  font-family:Inter,Segoe UI,Arial,sans-serif;background:
+  radial-gradient(circle at 15% 10%,#16213d 0,transparent 28%),
+  radial-gradient(circle at 85% 15%,#301331 0,transparent 25%),var(--bg);
+  color:var(--text);min-height:100vh;overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;
+  background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:70px 70px;mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+a{color:inherit;text-decoration:none}
+header{
+  position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);
+  background:rgba(5,6,10,.82);border-bottom:1px solid #202638;
+}
+.nav{
+  max-width:1500px;margin:auto;padding:16px 24px;display:flex;align-items:center;
+  justify-content:space-between;gap:18px;
+}
+.logo{
+  font-weight:1000;letter-spacing:7px;font-size:25px;position:relative;
+  font-family:Georgia,'Times New Roman',serif;
+  text-shadow:0 0 18px #ffd76a33;
+}
+.logo:after{
+  content:'OICOR • HOROLOGY';
+  position:absolute;left:2px;top:29px;font-family:Inter,Segoe UI,Arial,sans-serif;
+  font-size:7px;letter-spacing:4px;color:#7f899e;white-space:nowrap;
+}
+.logo span{color:var(--gold)}
+.navlinks{display:flex;gap:22px;color:#b9c0d1;font-size:13px;text-transform:uppercase;letter-spacing:1.4px}
+.navlinks a:hover{color:white}
+.voice{
+  border:1px solid var(--cyan);background:#07151a;color:var(--cyan);padding:10px 14px;
+  border-radius:10px;cursor:pointer;font-weight:800;box-shadow:0 0 20px #48e7ff22;
+}
+.hero{max-width:1500px;margin:auto;padding:70px 24px 35px;display:grid;grid-template-columns:1.25fr .75fr;gap:30px}
+.kicker{color:var(--cyan);font-size:12px;letter-spacing:4px;font-weight:900}
+h1{font-size:clamp(45px,7vw,92px);line-height:.9;margin:18px 0 22px;letter-spacing:-4px}
+h1 em{font-style:normal;color:var(--gold)}
+.hero p{max-width:750px;color:#a9b1c2;font-size:17px;line-height:1.7}
+.heroBox{
+  min-height:300px;border:1px solid #30384c;border-radius:24px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,#121725,#06070b);box-shadow:0 25px 80px #0008;
+}
+.heroBox img{width:100%;height:100%;object-fit:cover;opacity:.78;filter:saturate(1.15) contrast(1.08)}
+.heroOverlay{position:absolute;inset:0;background:linear-gradient(90deg,#05060add,transparent 70%),linear-gradient(0deg,#05060a99,transparent)}
+.heroTag{position:absolute;left:22px;bottom:20px;font-weight:900;letter-spacing:2px}
+.controls{max-width:1500px;margin:auto;padding:10px 24px 25px;display:flex;gap:10px;flex-wrap:wrap}
+.search,.select{
+  background:#0b0f18;border:1px solid #293146;color:white;border-radius:12px;padding:13px 15px;outline:none
+}
+.search{flex:1;min-width:240px}.select{min-width:160px}
+.stats{max-width:1500px;margin:auto;padding:0 24px 25px;display:flex;gap:12px;flex-wrap:wrap}
+.stat{padding:12px 15px;border:1px solid #252c3d;background:#090c13;border-radius:12px;color:#aab2c4;font-size:12px}
+.stat b{color:white;margin-right:5px}
+.grid{
+  max-width:1500px;margin:auto;padding:0 24px 70px;display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;
+}
+.card{
+  background:linear-gradient(180deg,#111520,#090b11);border:1px solid #252c3d;border-radius:20px;
+  overflow:hidden;position:relative;transition:.35s;animation:rise .65s both;box-shadow:0 15px 45px #0005;
+}
+.card:hover{transform:translateY(-8px);border-color:#4a5672;box-shadow:0 25px 60px #0009}
+.card:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid transparent;border-radius:20px;background:linear-gradient(135deg,#fff2,transparent 35%,#48e7ff15) border-box;mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);mask-composite:exclude}
+.pic{height:285px;background:#07090e;position:relative;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover;transition:.6s;display:block}
+.card:hover .pic img{transform:scale(1.07)}
+.badge{position:absolute;top:12px;left:12px;background:#05060acc;border:1px solid #ffffff25;padding:7px 9px;border-radius:9px;font-size:10px;letter-spacing:1.2px;font-weight:900}
+.rank{position:absolute;right:12px;top:12px;background:#ffd76a;color:#111;padding:7px 9px;border-radius:9px;font-size:10px;font-weight:1000}
+.info{padding:17px}
+.brand{color:var(--cyan);font-size:10px;letter-spacing:2px;font-weight:900}
+.name{font-size:19px;font-weight:900;margin:7px 0;color:white}
+.desc{font-size:12px;color:#858da0;line-height:1.55;min-height:38px}
+.bottom{display:flex;align-items:end;justify-content:space-between;margin-top:15px}
+.price{font-size:18px;font-weight:1000;color:var(--gold)}
+.price small{display:block;font-size:9px;color:#70798d;letter-spacing:1px;margin-bottom:3px}
+.view{border:1px solid #35405a;background:#121827;color:#fff;border-radius:9px;padding:8px 10px;font-size:10px;font-weight:900}
+.footer{border-top:1px solid #202638;padding:28px 24px;color:#6f788c;text-align:center;font-size:11px;letter-spacing:1px}
+.modal{position:fixed;inset:0;background:#000b;backdrop-filter:blur(12px);display:none;place-items:center;z-index:100;padding:20px}
+.modal.on{display:grid}
+.modalBox{max-width:850px;width:100%;background:#0c1018;border:1px solid #364057;border-radius:22px;overflow:hidden;box-shadow:0 30px 100px #000}
+.modalBox img{width:100%;height:380px;object-fit:cover}
+.modalInfo{padding:25px}.close{float:right;cursor:pointer;color:#aeb6c7;font-size:25px}
+.neon{animation:pulse 2.8s infinite}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 #48e7ff00}50%{box-shadow:0 0 30px #48e7ff18}}
+
+.cinematic{min-height:390px;perspective:1000px;background:
+ radial-gradient(circle at 50% 50%,#343b50 0,transparent 25%),
+ linear-gradient(135deg,#161b29,#05060a 65%);overflow:hidden}
+.heroWatch{position:absolute;inset:22px;display:grid;place-items:center;z-index:2}
+.heroWatch img{width:78%;height:82%;object-fit:cover;border-radius:28px;transform:rotate(-5deg) scale(1.02);
+ filter:contrast(1.12) brightness(.95) saturate(1.12);animation:watchFloat 5s ease-in-out infinite, watchTilt 9s ease-in-out infinite alternate;
+ box-shadow:0 30px 70px #000b}
+.videoBadge{position:absolute;right:18px;top:18px;z-index:5;border:1px solid #ff4f7a88;background:#090b12dd;
+ color:#ff6c91;border-radius:20px;padding:8px 11px;font-size:9px;font-weight:1000;letter-spacing:1.4px;animation:blink 1.5s infinite}
+.scanline{position:absolute;inset:-50%;z-index:4;background:linear-gradient(transparent 48%,#48e7ff12 50%,transparent 52%);
+ background-size:100% 22px;animation:scan 7s linear infinite;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.45;z-index:1}
+.orb1{width:150px;height:150px;background:#48e7ff33;left:-40px;top:50px;animation:orbMove 7s infinite alternate}
+.orb2{width:180px;height:180px;background:#ff4fd833;right:-50px;bottom:-40px;animation:orbMove 9s infinite alternate-reverse}
+.autoRail{max-width:1500px;margin:auto;padding:8px 24px 25px}
+.railHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:12px}
+.railHead span{display:block;color:var(--cyan);font-size:9px;letter-spacing:3px;font-weight:1000}
+.railHead b{display:block;font-size:20px;margin-top:4px;letter-spacing:1px}
+.autoDot{font-size:9px;color:#707a90;letter-spacing:2px}
+.railWindow{overflow:hidden;border:1px solid #252c3d;border-radius:18px;background:#080a10}
+.railTrack{display:flex;width:max-content;animation:railMove 28s linear infinite}
+.railTrack:hover{animation-play-state:paused}
+.railItem{width:230px;height:135px;position:relative;overflow:hidden;border-right:1px solid #252c3d;flex:none;background:#090c12}
+.railItem img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(1.1);transition:.5s}
+.railItem:hover img{transform:scale(1.12)}
+.railItem:after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#000c,transparent 65%)}
+.railText{position:absolute;z-index:2;bottom:9px;left:11px;font-size:10px;font-weight:900;letter-spacing:1px}
+.card .pic:before{content:'';position:absolute;z-index:2;inset:0;pointer-events:none;
+ background:linear-gradient(115deg,transparent 35%,#ffffff12 47%,transparent 60%);transform:translateX(-130%);
+ animation:shine 5s infinite}
+@keyframes watchFloat{0%,100%{transform:translateY(7px) rotate(-5deg) scale(1.02)}50%{transform:translateY(-10px) rotate(-2deg) scale(1.06)}}
+@keyframes watchTilt{0%{filter:contrast(1.1) brightness(.9)}100%{filter:contrast(1.25) brightness(1.08)}}
+@keyframes blink{50%{opacity:.55}}
+@keyframes scan{to{transform:translateY(90px)}}
+@keyframes orbMove{to{transform:translate(80px,-35px) scale(1.2)}}
+@keyframes shine{0%,55%{transform:translateX(-130%)}75%,100%{transform:translateX(130%)}}
+@keyframes railMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,1fr)}.hero{grid-template-columns:1fr}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}.pic{height:220px}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.hero{padding-top:45px}h1{letter-spacing:-2px}.pic{height:280px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <div class="logo">OICOR</div>
+    <div class="navlinks"><a href="#collection">Collection</a><a href="#elite">Elite</a><a href="#about">About</a></div>
+    <button class="voice" onclick="speak('Welcome to OICOR. Thirty elite watches. No checkout. Just the collection.')">◉ PC VOICE</button>
+  </div>
+</header>
+
+<section class="hero" id="elite">
+  <div>
+    <div class="kicker">ELITE HOROLOGY / ESPORTS INTERFACE</div>
+    <h1>THE <em>OICOR</em><br>LUXURY WATCH VAULT</h1>
+    <p>Thirty statement timepieces presented in a dark, animated esports-style interface. Browse, search and open every piece. No checkout, no fake order flow — just a premium visual showcase.</p>
+  </div>
+  <div class="heroBox neon cinematic">
+    <div class="scanline"></div>
+    <div class="orb orb1"></div><div class="orb orb2"></div>
+    <div class="heroWatch">
+      <img src="high-quality-men-s-watches-ice-diamond-watch.jpg" alt="OICOR luxury diamond watch"
+           onerror="this.src='https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1200&q=85'">
+    </div>
+    <div class="heroOverlay"></div>
+    <div class="videoBadge">● CINEMATIC LIVE</div>
+    <div class="heroTag">OICOR / DIAMOND / PRIVATE VAULT</div>
+  </div>
+</section>
+
+
+<section class="autoRail">
+  <div class="railHead">
+    <div><span>OICOR MOTION SERIES</span><b>THE COLLECTION IN MOTION</b></div>
+    <div class="autoDot">AUTO SWIPE • 03 SEC</div>
+  </div>
+  <div class="railWindow"><div class="railTrack" id="railTrack"></div></div>
+</section>
+<div class="controls">
+  <input id="search" class="search" placeholder="Search brand or watch..." oninput="render()">
+  <select id="brand" class="select" onchange="render()"><option value="">All brands</option></select>
+  <select id="sort" class="select" onchange="render()">
+    <option value="rank">Elite ranking</option><option value="low">Price: low → high</option><option value="high">Price: high → low</option>
+  </select>
+</div>
+
+<div class="stats">
+  <div class="stat"><b>30</b> ELITE PIECES</div>
+  <div class="stat"><b>∞</b> STYLE</div>
+  <div class="stat"><b>0</b> CHECKOUT</div>
+  <div class="stat"><b>4K</b> VISUAL MODE</div>
+</div>
+
+<section class="grid" id="collection"></section>
+
+<div class="footer" id="about">OICOR — VISUAL CONCEPT. Prices shown are illustrative display values, not live market quotations.</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modalBox">
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="mimg" src="" alt="">
+    <div class="modalInfo"><div class="brand" id="mbrand"></div><h2 id="mname" style="margin:8px 0 10px"></h2><p id="mdesc" style="color:#9ba4b7;line-height:1.7"></p><div class="price" id="mprice" style="margin-top:18px"></div></div>
+  </div>
+</div>
+
+<script>
+const local1="high-quality-men-s-watches-ice-diamond-watch.jpg";
+const local2="61MoVZMDDL.jpg";
+const img=[
+  local1,local2,
+  "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=1000&q=85",
+  "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1000&q=85"
+];
+
+const watches=[
+["Patek Philippe","Grand Complications","$2,850,000","Masterpiece of haute horlogerie with an ultra-complex complication set."],
+["Richard Mille","RM 56-02 Sapphire","$2,500,000","Transparent sapphire architecture with extreme technical engineering."],
+["Audemars Piguet","Royal Oak Concept","$890,000","Futuristic Royal Oak design built for the elite collector."],
+["Jacob & Co.","Astronomia Tourbillon","$1,100,000","A kinetic celestial display with a dramatic flying tourbillon."],
+["Vacheron Constantin","Traditionnelle Tourbillon","$420,000","Classical Geneva finishing with a refined tourbillon movement."],
+["Rolex","Day-Date Diamond Edition","$165,000","Iconic president bracelet silhouette with a high-jewellery treatment."],
+["Cartier","Santos High Jewellery","$210,000","Santos geometry transformed into a full jewellery statement."],
+["Hublot","Big Bang Unico Sapphire","$190,000","Open architecture and sapphire case for a futuristic presence."],
+["Breguet","Classique Double Tourbillon","$350,000","Traditional hand-finishing paired with a dramatic double tourbillon."],
+["A. Lange & Söhne","Zeitwerk Decimal Strike","$280,000","German precision with an instantly recognizable digital display."],
+["Richard Mille","RM 11-03 Automatic Flyback","$275,000","Motorsport-inspired skeletonized chronograph architecture."],
+["Patek Philippe","Nautilus Haute Joaillerie","$325,000","Sport-luxury icon elevated with a gem-set presentation."],
+["Audemars Piguet","Royal Oak Offshore Chronograph","$145,000","Bold octagonal case with aggressive modern wrist presence."],
+["Jacob & Co.","Billionaire Watch","$18,000,000","A spectacular high-jewellery concept built around emerald-cut stones."],
+["Graff","Diamond MasterGraff","$1,200,000","High jewellery meets mechanical watchmaking in full diamond style."],
+["F.P. Journe","Astronomic Blue","$650,000","Collector-focused astronomical complications in a distinctive case."],
+["Vacheron Constantin","Overseas Tourbillon","$240,000","Travel-ready luxury with a refined tourbillon movement."],
+["Patek Philippe","Sky Moon Tourbillon","$2,100,000","One of the brand's most complex and collector-focused designs."],
+["Rolex","Cosmograph Daytona Diamond","$240,000","Motorsport heritage with an ultra-luxury gem-set interpretation."],
+["Audemars Piguet","Royal Oak Frosted Gold","$130,000","Textured gold case and bracelet with signature Royal Oak lines."],
+["Hublot","Spirit of Big Bang Tourbillon","$250,000","Barrel-shaped case and tourbillon in a high-impact modern layout."],
+["Cartier","Panthère High Jewellery","$400,000","Jewellery-first design inspired by Cartier's iconic panther universe."],
+["Bulgari","Octo Finissimo Tourbillon","$190,000","Ultra-thin Italian design paired with sophisticated mechanics."],
+["Ulysse Nardin","Freak X Diamond","$180,000","Avant-garde wandering-hours architecture with a jewellery finish."],
+["Greubel Forsey","Double Balancier","$1,100,000","Extreme hand-finishing and advanced multi-balance engineering."],
+["MB&F","Legacy Machine FlyingT","$350,000","Sculptural horology centered around a floating vertical tourbillon."],
+["Roger Dubuis","Excalibur Spider","$420,000","Openworked hyper-watch styling with a motorsport-inspired attitude."],
+["Chopard","L.U.C Flying T","$230,000","Elegant high horology with a refined flying tourbillon."],
+["Van Cleef & Arpels","Midnight Poetic Wish","$280,000","Dreamlike jewellery watch blending artistry with fine mechanics."],
+["Louis Moinet","Space Mystery","$300,000","Space-inspired luxury with a theatrical mechanical presentation."]
+];
+
+function money(n){return n}
+function render(){
+  const q=document.getElementById("search").value.toLowerCase();
+  const b=document.getElementById("brand").value;
+  const s=document.getElementById("sort").value;
+  let arr=watches.map((x,i)=>({x,i})).filter(o=>(o.x[0]+" "+o.x[1]).toLowerCase().includes(q)&&(b===""||o.x[0]===b));
+  if(s==="low")arr.sort((a,b)=>num(a.x[2])-num(b.x[2]));
+  if(s==="high")arr.sort((a,b)=>num(b.x[2])-num(a.x[2]));
+  document.getElementById("collection").innerHTML=arr.map((o,k)=>{
+    const x=o.x, i=o.i;
+    return `<article class="card" style="animation-delay:${Math.min(k,15)*35}ms">
+      <div class="pic"><img src="${img[i%img.length]}" alt="${x[0]} ${x[1]}" onerror="this.src='${img[(i+2)%img.length]}'">
+      <div class="badge">${x[0].toUpperCase()}</div><div class="rank">#${String(i+1).padStart(2,"0")}</div></div>
+      <div class="info"><div class="brand">${x[0]}</div><div class="name">${x[1]}</div><div class="desc">${x[3]}</div>
+      <div class="bottom"><div class="price"><small>ILLUSTRATIVE DISPLAY PRICE</small>${x[2]}</div>
+      <button class="view" onclick="openModal(${i})">VIEW</button></div></div></article>`;
+  }).join("");
+}
+function num(s){return Number(s.replace(/[^0-9.]/g,""))}
+function openModal(i){
+  const x=watches[i];
+  document.getElementById("mimg").src=img[i%img.length];
+  document.getElementById("mbrand").textContent=x[0];
+  document.getElementById("mname").textContent=x[1];
+  document.getElementById("mdesc").textContent=x[3];
+  document.getElementById("mprice").textContent=x[2];
+  document.getElementById("modal").classList.add("on");
+}
+function closeModal(){document.getElementById("modal").classList.remove("on")}
+function speak(t){
+  if(!("speechSynthesis" in window)){alert("Voice is not supported in this browser.");return}
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=.95;u.pitch=.9;speechSynthesis.speak(u);
+}
+
+function buildRail(){
+  const track=document.getElementById("railTrack");
+  const all=watches.concat(watches);
+  track.innerHTML=all.map((x,i)=>`
+    <div class="railItem">
+      <img src="${img[i%img.length]}" alt="${x[0]} ${x[1]}"
+           onerror="this.src='${img[(i+2)%img.length]}'">
+      <div class="railText">${x[0].toUpperCase()} / ${x[1]}</div>
+    </div>`).join("");
+}
+buildRail();
+const brands=[...new Set(watches.map(x=>x[0]))];
+document.getElementById("brand").innerHTML='<option value="">All brands</option>'+brands.map(b=>`<option>${b}</option>`).join("");
+render();
+</script>
+</body>
+</html>
